@@ -1,12 +1,11 @@
 # Robot Class
 class Robot
-
   def initialize
     @name = ''
   end
 
   def name
-    generate_name if @name == ''
+    generate_name if no_name?
     @name
   end
 
@@ -17,12 +16,8 @@ class Robot
   private
 
   def generate_name
-    name = ''
-    letters = all_letters
-    2.times { name << letters.chars[rand(letters.size)] }
-    digits = all_digits
-    3.times { name << digits.chars[rand(digits.size)] }
-    @name = name
+    2.times { @name << all_letters.chars[rand(all_letters.size)] }
+    3.times { @name << all_digits.chars[rand(all_digits.size)] }
   end
 
   def all_letters
@@ -31,5 +26,9 @@ class Robot
 
   def all_digits
     '123456789'
+  end
+
+  def no_name?
+    @name == ''
   end
 end
